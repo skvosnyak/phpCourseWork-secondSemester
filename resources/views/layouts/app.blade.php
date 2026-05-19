@@ -10,7 +10,7 @@
 
 <body>
   <nav>
-    <a href="{{ route('movies.index') }}">🎬 Каталог фильмов</a>
+    <a href="{{ route('movies.index') }}">Каталог фильмов</a>
     <a href="{{ route('movies.create') }}">+ Добавить фильм</a>
   </nav>
   <div class="container">
