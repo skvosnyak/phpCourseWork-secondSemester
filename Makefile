@@ -19,3 +19,6 @@ bash:
 rebuild:
 	docker compose down
 	docker compose up --build -d
+
+kill:
+	docker compose kill
