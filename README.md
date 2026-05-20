@@ -1,6 +1,6 @@
 # Каталог фильмов
 
-Веб-приложение для просмотра и оценки фильмов, построенное на Laravel 13 и PostgreSQL.
+Тестовое веб-приложение для просмотра и оценки фильмов, построенное на Laravel 13 и PostgreSQL.
 
 ## Стек
 
@@ -16,8 +16,8 @@
 - Просмотр каталога фильмов
 - Фильтрация по жанру и поиск по названию (без перезагрузки страницы)
 - Страница фильма со средним рейтингом на основе рецензий
-- Добавление, редактирование и удаление фильмов
-- Добавление рецензий с оценкой от 1 до 10
+- Добавление, редактирование и удаление фильмов (необходим вход)
+- Добавление рецензий с оценкой от 1 до 10 (необходим вход)
 
 ## Структура проекта
 
@@ -27,14 +27,19 @@ CourseProject/
 │   ├── Http/Controllers/
 │   │   ├── MovieController.php
 │   │   └── ReviewController.php
+|   ├── Http/Middleware/ 
+|   |   └── AdminMiddleware.php
 │   └── Models/
 │       ├── Movie.php
-│       └── Review.php
+|       ├── Review.php
+│       └── User.php
 ├── database/
 │   ├── migrations/
 │   └── seeders/
 │       └── MovieSeeder.php
 ├── resources/views/
+|   ├── auth/
+|   |   └──login.blade.php
 │   ├── layouts/
 │   │   └── app.blade.php
 │   └── movies/
@@ -79,6 +84,12 @@ docker compose exec app php artisan migrate --seed
 
 Приложение доступно на `http://localhost:8080/movies`
 
+Данные для получения прав на редактирование и добавление фильмов :
+
+Login: admin
+
+Password: admin123
+
 ## Команды
 
 ```bash
@@ -104,3 +115,5 @@ make kill        # принудительно остановить
 | PUT | `/movies/{id}` | Обновить фильм |
 | DELETE | `/movies/{id}` | Удалить фильм |
 | POST | `/movies/{id}/reviews` | Добавить рецензию |
+| POST | `/login` | Аутентификация и авторизация |
+| POST | `/logout` | Завершение сессии администратора |
